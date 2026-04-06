@@ -1,95 +1,16 @@
 # LifeTech_v5
 LifeTech v5 es una plataforma SaaS avanzada que combina gestión de tareas, hábitos, finanzas y agentes de inteligencia artificial para automatizar la vida digital del usuario. Diseñada con arquitectura modular, event-driven, vector DB y contenedores Docker, lista para despliegue profesional.
 
-
-lifetech/
-│
-├── apps/
-│   ├── web/             → Frontend React
-│   ├── api-gateway/     → Entrada unificada
-│   └── admin/           → Panel administrativo
-│
-├── services/
-│   ├── auth-service/
-│   ├── task-service/
-│   ├── finance-service/
-│   └── habit-service/
-│
-├── agents/
-│   ├── finance.agent.js
-│   ├── productivity.agent.js
-│   └── habit.agent.js
-│
-├── packages/
-│   ├── ui/
-│   ├── database/
-│   ├── config/
-│   └── types/
-│
-├── infra/
-│   ├── docker/
-│   └── github-actions/
-└── README.md
-
-
-apps/web/src/
-│
-├── app/
-│   ├── router.jsx
-│   └── providers.jsx
-│
-├── layouts/
-│   └── DashboardLayout.jsx
-│
-├── pages/
-│   ├── Dashboard.jsx
-│   ├── Tasks.jsx
-│   ├── Finance.jsx
-│   ├── Habits.jsx
-│   └── AI.jsx
-│
-├── hooks/
-│   ├── useTasks.js
-│   ├── useFinance.js
-│   └── useAI.js
-│
-└── main.jsx
-
-
-apps/api-gateway/src/
-│
-├── routes/
-│   ├── auth.routes.js
-│   ├── task.routes.js
-│   ├── finance.routes.js
-│   └── habit.routes.js
-│
-├── middleware/
-│   └── auth.js
-│
-└── server.js
-
-
-services/auth-service/src/
-├── controllers/
-├── routes/
-├── models/
-└── server.js
-
-
 Perfecto.
 Esa estructura ya es **arquitectura SaaS real**. Ahora vamos a convertirla en algo **ejecutable y coherente**, porque lo importante no es solo tener carpetas bonitas sino **responsabilidades claras**.
 
 Aquí empieza LifeTech v5 de verdad.
-
----
 
 # 🧠 Arquitectura Operativa de LifeTech v5
 
 Tu árbol está bien.
 Ahora definimos **qué vive en cada lugar** y agregamos el código base mínimo para que todo funcione conectado.
 
----
 
 # 📦 1. `apps/` → Aplicaciones ejecutables
 
