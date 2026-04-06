@@ -1,0 +1,25 @@
+{
+  "name": "lifetech",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "packageManager": "pnpm@10.30.3",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "dev:api": "pnpm --filter api-gateway dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:agents": "pnpm --filter @lifetech/productivity-agent dev",
+    "docker:up": "docker compose -f infra/docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f infra/docker/docker-compose.yml down"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "react-router-dom": "^6.30.3"
+  }
+}

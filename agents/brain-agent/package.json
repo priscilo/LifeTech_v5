@@ -1,0 +1,10 @@
+{
+    "name": "brain-agent",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "@lifetech/event-bus": "workspace:*"
+    }
+}
