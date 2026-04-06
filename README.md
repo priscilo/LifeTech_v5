@@ -1,347 +1,105 @@
-# LifeTech_v5
-LifeTech v5 es una plataforma SaaS avanzada que combina gestión de tareas, hábitos, finanzas y agentes de inteligencia artificial para automatizar la vida digital del usuario. Diseñada con arquitectura modular, event-driven, vector DB y contenedores Docker, lista para despliegue profesional.
 
-Perfecto.
-Esa estructura ya es **arquitectura SaaS real**. Ahora vamos a convertirla en algo **ejecutable y coherente**, porque lo importante no es solo tener carpetas bonitas sino **responsabilidades claras**.
+```markdown
+# LifeTech v5 🚀
 
-Aquí empieza LifeTech v5 de verdad.
+## 📌 Descripción
+LifeTech v5 es una plataforma modular y escalable diseñada como **SaaS con agentes inteligentes y arquitectura event-driven**.
+Su objetivo es ofrecer un **dashboard financiero y de productividad** con UI/UX moderna, integración de servicios, y soporte para crecimiento en entornos de startups.
 
-# 🧠 Arquitectura Operativa de LifeTech v5
+---
 
-Tu árbol está bien.
-Ahora definimos **qué vive en cada lugar** y agregamos el código base mínimo para que todo funcione conectado.
+## ⚙️ Instalación
 
+### Requisitos previos
+- Node.js >= 18
+- pnpm >= 8
+- PostgreSQL
+- Redis
 
-# 📦 1. `apps/` → Aplicaciones ejecutables
+### Pasos
+```bash
+# Clonar el repositorio
+git clone https://github.com/priscilo/LifeTech_v5.git
+cd LifeTech_v5
 
-Son **entrypoints del sistema**.
+# Instalar dependencias
+pnpm install
 
-```
-apps/
-```
-
-## 🌐 `apps/web`
-
-👉 producto principal del usuario.
-
-Responsabilidad:
-
-* UI React
-* Dashboard
-* consumo API Gateway
-* interacción con IA
-
-```
-apps/web/src/
-│
-├── app/
-│   ├── router.jsx
-│   └── providers.jsx
-│
-├── layouts/
-│   └── DashboardLayout.jsx
-│
-├── pages/
-│   ├── Dashboard.jsx
-│   ├── Tasks.jsx
-│   ├── Finance.jsx
-│   ├── Habits.jsx
-│   └── AI.jsx
-│
-├── hooks/
-│   ├── useTasks.js
-│   ├── useFinance.js
-│   └── useAI.js
-│
-└── main.jsx
+# Levantar el entorno de desarrollo
+pnpm dev
 ```
 
 ---
 
-## 🌐 `apps/api-gateway`
-
-👉 cerebro HTTP del sistema.
-
-NO contiene lógica de negocio.
-
-Solo:
-
-* auth middleware
-* routing
-* aggregation
-* websocket
-* rate limit
+## 🏗️ Estructura del Monorepo
 
 ```
-apps/api-gateway/src/
-│
-├── routes/
-│   ├── auth.routes.js
-│   ├── task.routes.js
-│   ├── finance.routes.js
-│   └── habit.routes.js
-│
-├── middleware/
-│   └── auth.js
-│
-└── server.js
+LifeTech_v5/
+├── agents/          # Agentes inteligentes (AI Agents)
+├── apps/            # Aplicaciones frontend (React, dashboards)
+├── infra/           # Infraestructura y configuración
+├── packages/        # Librerías compartidas (DB, utils, event-bus)
+├── services/        # Microservicios backend (auth, finances, tasks)
+├── turbo.json       # Configuración de Turborepo
+├── pnpm-workspace.yaml # Configuración de workspace
+└── README.md
 ```
 
 ---
 
-### ✅ server.js base
+## 📊 Capturas del Dashboard Financiero
 
-```js
-import express from "express";
-import cors from "cors";
+### Resumen de KPIs
+- Promedio Ingresos: **$2380.00**
+- Promedio Gastos: **$1380.00**
+- Promedio Balance: **$1000.00**
 
-import authRoutes from "./routes/auth.routes.js";
+### Ejemplo de métricas mensuales
+- Ingresos: $3000.00
+- Gastos: $1700.00
+- Balance Neto: $1300.00
+- Proyección próximo mes: $2200.00
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-app.use("/api/auth", authRoutes);
-
-app.get("/api/health", (_, res) =>
-  res.json({ status: "LifeTech API OK" })
-);
-
-app.listen(4000, () =>
-  console.log("API Gateway running")
-);
-```
+### Gráficos
+- **Evolución mensual**: línea comparativa de ingresos, gastos y balance.
+- **Comparación mensual**: barras comparativas por mes.
 
 ---
 
-## 🧑‍💼 `apps/admin`
-
-Panel interno:
-
-* métricas
-* logs IA
-* usuarios
-* billing
-
-(Se conecta igual al gateway)
+## 🛡️ Seguridad
+- Variables sensibles gestionadas vía `.env` (no versionadas).
+- Política de seguridad en `SECURITY.md`.
+- Reporte de vulnerabilidades vía Issues o contacto directo.
 
 ---
 
-# ⚙️ 2. `services/` → Microservicios reales
+## 🤝 Contribución
+1. Haz un fork del proyecto.
+2. Crea una rama (`feat/nueva-funcionalidad`).
+3. Haz commit de tus cambios (`git commit -m "feat: nueva funcionalidad"`).
+4. Haz push a tu rama (`git push origin feat/nueva-funcionalidad`).
+5. Abre un Pull Request.
 
-Aquí vive la **lógica de negocio**.
-
-Cada servicio:
-
-✅ tiene su propio servidor
-✅ su propia DB access
-✅ puede escalar independiente
-
----
-
-## 🔐 auth-service
-
-Responsabilidad:
-
-* login
-* JWT
-* sesiones
-
-```
-services/auth-service/src/
-├── controllers/
-├── routes/
-├── models/
-└── server.js
-```
+Más detalles en `CONTRIBUTING.md`.
 
 ---
 
-## ✅ task-service
-
-Responsabilidad:
-
-* CRUD tareas
-* eventos de productividad
+## 📜 Licencia
+Este proyecto está bajo la licencia **MIT**.
+Consulta el archivo `LICENSE` para más detalles.
 
 ---
 
-## 💸 finance-service
-
-Responsabilidad:
-
-* ingresos
-* gastos
-* análisis financiero
-
----
-
-## 🔁 habit-service
-
-Responsabilidad:
-
-* tracking hábitos
-* streaks
-* métricas
+## 🗺️ Roadmap
+- [x] Dashboard financiero con KPIs y gráficos.
+- [x] API Gateway con rutas de auth, finances y tasks.
+- [ ] Endpoint `/api/finances/trends` para datos listos para gráficos.
+- [ ] Integración de notificaciones inteligentes.
+- [ ] Módulo de productividad con tareas y recordatorios.
+- [ ] Optimización para despliegue en entornos cloud.
 
 ---
 
-# 🤖 3. `agents/` → Sistema de Inteligencia Artificial
-
-Esto es lo que vuelve único a LifeTech.
-
-NO son endpoints HTTP.
-
-Son **consumidores de eventos**.
-
+## ✨ Autor
+Desarrollado por **Priscilo** con enfoque en **arquitectura modular, UI/UX profesional y escalabilidad SaaS**.
 ```
-agents/
-```
-
-Ejemplo:
-
-```js
-// productivity.agent.js
-
-export function onTaskCreated(task) {
-  console.log("AI analyzing task", task);
-}
-```
-
-Después escucharán:
-
-```
-Event Bus → task.created
-```
-
----
-
-# 📦 4. `packages/` → Código Compartido
-
-🔥 Esta carpeta es nivel senior.
-
-Nada aquí corre solo.
-
-Se importa desde apps o services.
-
----
-
-## `packages/database`
-
-Una sola conexión compartida:
-
-```js
-import { Pool } from "pg";
-
-export const db = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-```
-
----
-
-## `packages/ui`
-
-Componentes reutilizables:
-
-```
-Button
-Card
-Sidebar
-Charts
-```
-
-👉 evita copiar UI entre web y admin.
-
----
-
-## `packages/config`
-
-Variables comunes:
-
-```
-env
-logger
-constants
-```
-
----
-
-## `packages/types`
-
-Schemas compartidos:
-
-```
-User
-Task
-Finance
-Events
-```
-
-(ideal con Zod o TypeScript)
-
----
-
-# 🐳 5. `infra/`
-
-Infraestructura reproducible.
-
-```
-infra/
-├── docker/
-│   └── docker-compose.yml
-└── github-actions/
-```
-
-Aquí vive:
-
-* postgres
-* redis
-* queue
-* CI/CD
-
----
-
-# 🔥 Flujo REAL de LifeTech
-
-```
-User
- ↓
-React Web
- ↓
-API Gateway
- ↓
-Microservice
- ↓
-Database
- ↓
-Event Bus
- ↓
-AI Agents
- ↓
-Insights → Dashboard
-```
-
----
-
-# 🚀 SIGUIENTE PASO CRÍTICO
-
-Ahora viene el salto grande:
-
-## 👉 conectar TODO con un **Event Bus real**
-
-Porque LifeTech no es CRUD.
-
-Es:
-
-**EVENT-DRIVEN AI PLATFORM**
-
-Vamos a construir:
-
-✅ Redis Pub/Sub
-✅ eventos automáticos
-✅ agentes reaccionando solos
-✅ dashboard actualizándose sin refresh
-
-¿Construimos el **Event Bus + primer AI Agent vivo**? 🔥
